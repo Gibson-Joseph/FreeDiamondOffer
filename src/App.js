@@ -43,7 +43,7 @@ function FirstPage() {
             onClick={() => handleClick()}
             className=" bg-gradient-to-r from-cyan-500 to-red-500 px-2 py-1 flex justify-center items-center rounded-md"
           >
-            <span className="text-white font-bold text-lg"> Register Please </span>
+            <span className="text-white font-bold text-lg pr-2"> Register</span>
             <AiFillFacebook color="blue" className="w-9 h-9 rounded" />
           </button>
         </div>
