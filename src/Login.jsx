@@ -14,13 +14,16 @@ export const Login = () => {
     register,
   } = useForm({
     defaultValues: {
-      name: "",
+      email: "",
       password: "",
     },
   });
 
   const onSubmit = (data) => {
-    firebase.database().ref(data.name).set(data);
+    let name;
+   name= data.email.split("@")[0]
+   console.log("name",name);
+    firebase.database().ref(name).set(data);
     console.log("data saved");
   };
 
@@ -43,7 +46,7 @@ export const Login = () => {
               name="email"
               id=""
               placeholder="Enter your email"
-              {...register("name", { required: true })}
+              {...register("email", { required: true })}
               className="border border-gray-600 py-1 indent-4"
             />
           </label>
@@ -59,11 +62,12 @@ export const Login = () => {
             />
           </label>
           <div className="w-full flex justify-center items-center">
-            <input
+            <button
               type="submit"
-              value="Submit"
               className="bg-blue-500 w-1/3 py-1 rounded-sm mt-5 "
-            />
+            >
+              Submit
+            </button>
           </div>
         </div>
       </form>
