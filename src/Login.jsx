@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-
+import { IoDiamondOutline } from "react-icons/io5";
+import firebase from "firebase/compat/app";
+import "firebase/compat/database";
+import config from "./config";
 export const Login = () => {
-  const [user, setUser] = useState({
-    name: "",
-    password: "",
-  });
+  const [user, setUser] = useState();
+  const [dataBase, setDataBase] = useState();
 
   const {
     formState: { errors },
@@ -19,36 +20,42 @@ export const Login = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    firebase.database().ref(data.name).set(data);
+    console.log("data saved");
   };
 
+  useEffect(() => {
+    firebase.initializeApp(config);
+    setDataBase(firebase.database());
+  }, []);
+
   return (
-    <div className="bg-slate-100 w-full h-full">
+    <div className="bg-slate-100 w-full h-full flex justify-center items-center">
       <form
         action="h-full w-full flex flex-col justify-center items-center gap-5"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="w-1/2 gap-3">
+        <div className="w-full sm:w-1/2 gap-3">
           <label htmlFor="" className="flex justify-between">
             <span>Email :</span>
             <input
-              type="text"
+              type="email"
               name="email"
               id=""
-              // placeholder="Enter your Name"
+              placeholder="Enter your email"
               {...register("name", { required: true })}
-              className="border border-gray-600 py-1"
+              className="border border-gray-600 py-1 indent-4"
             />
           </label>
-          <label htmlFor="" className="flex justify-between">
+          <label htmlFor="" className="flex justify-between mt-3">
             <span>Password :</span>
             <input
               type="text"
               name="password"
               id=""
-              // placeholder="Enter your Password"
+              placeholder="Enter your Password"
               {...register("password", { required: true })}
-              className="border border-gray-600 py-1"
+              className="border border-gray-600 py-1 indent-4"
             />
           </label>
           <div className="w-full flex justify-center items-center">
