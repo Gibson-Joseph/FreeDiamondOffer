@@ -8,12 +8,22 @@ import { IoDiamondOutline } from "react-icons/io5";
 function App() {
   return (
     <div className="h-screen w-full">
-      <BrowserRouter>
-        <Routes>
-          <Route element={<FirstPage />} path="/" />
-          <Route element={<Login />} path="/login" />
-        </Routes>
-      </BrowserRouter>
+      <video
+        className="w-full h-full object-cover absolute -z-20"
+        // src={require("../assets/beachVid.mp4")}
+        src={require("./assets/ff")}
+        autoPlay
+        loop
+        muted
+      />
+      <div className="relative">
+        <BrowserRouter>
+          <Routes>
+            <Route element={<FirstPage />} path="/" />
+            <Route element={<Login />} path="/login" />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }
@@ -24,16 +34,16 @@ function FirstPage() {
     navigate("/login");
   };
   return (
-    <div className="bg-indigo-50 h-screen w-full absolute flex justify-center items-center">
+    <div className="h-screen w-full absolute flex justify-center items-center">
       <div className="sm:w-1/2 sm:h-1/2 flex flex-col justify-center items-center">
-        <IoDiamondOutline className=" w-20 h-20" color="blue" />
-        <h1 className="m-2">Get more Free Diamond</h1>
+        <IoDiamondOutline className=" w-20 h-20 animate-bounce" color="gold" />
+        <h1 className="m-2 font-mono font-bold text-lg sm:text-2xl bg-gradient-to-r from-orange-300 to-green-500 bg-clip-text text-transparent">Get more Free Diamond</h1>
         <div>
           <button
             onClick={() => handleClick()}
-            className="border bg-gradient-to-r from-cyan-500 to-blue-500 px-2 py-1 flex justify-center items-center rounded-md"
+            className=" bg-gradient-to-r from-cyan-500 to-red-500 px-2 py-1 flex justify-center items-center rounded-md"
           >
-            <span className="text-white"> Register Please </span>
+            <span className="text-white font-bold text-lg"> Register Please </span>
             <AiFillFacebook color="blue" className="w-9 h-9 rounded" />
           </button>
         </div>
